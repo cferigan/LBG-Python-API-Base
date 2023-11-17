@@ -6,7 +6,7 @@ set -e
 
 # Define Docker image name
 
-DOCKER_IMAGE="cferigan/Python-API"
+DOCKER_IMAGE="cferigan/python-api"
 
 cleanup() {
 
