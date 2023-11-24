@@ -43,17 +43,4 @@ pipeline {
     }
 
 }
-        stage('Build') {
-            steps {
-                sh '''
-                sh "setup.sh"
-                '''
-           }
-        }
-        stage('Deploy') {
-            steps {
-                sh '''
-                
-                '''
-            }
-        }
+
