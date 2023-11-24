@@ -4,12 +4,19 @@ pipeline {
 
     environment {
 
-        GCR_CREDENTIALS_ID = 'gcp' // The ID you provided in Jenkins credentials
+        GCR_CREDENTIALS_ID = 'gcp' 
 
         IMAGE_NAME = 'connor-python-api'
 
         GCR_URL = 'gcr.io/lbg-mea-15'
 
+        PROJECT_ID = 'lbg-mea-15'
+
+        CLUSTER_NAME = 'connor-cluster'
+
+        LOCATION = 'europe-west2-c'
+
+        CREDENTIALS_ID = 'd830c937-605d-450d-94fb-66a44eb18fde'
     }
 
     stages {
@@ -37,6 +44,19 @@ pipeline {
         }
 
     }
+ stage('Deploy to GKE') {
+
+            steps {
+
+                script {
+
+                 
+
+                    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'kubernetes/deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+
+                }
+
+            }
 
         }
 
